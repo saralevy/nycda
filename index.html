@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .default { color:blue; background-color: white; }
+        .whiteGreen { color: white; background-color: green; }
+        .redGrey { color:red; background-color: grey; }
+        .greenYellow { color:green; background-color: yellow; }
+        body{
+            width: 80%;
+        }
+        form {
+            padding: 2%;
+            border: solid 2px red;
+            border-radius: 5%;
+        }
+        .LHSlist, .RHSlist {
+            padding: 10%;
+            display: inline;
+            width: 30%;
+            float: left;
+        }
+        .my-items{
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="formController" class="{{myColor}}">
+    <form>
+        <label>Select color scheme</label>
+        <div class="form-group">
+            <div class="radio">
+            <label><input type="radio" name="RB" value="whiteGreen" ng-model="myColor">whiteGreen</label>
+            <label><input type="radio" name="RB" value="redGrey" ng-model="myColor">redGrey</label>
+            <label><input type="radio" name="RB" value="greenYellow" ng-model="myColor">greenYellow</label>
+            <label><input type="radio" name="RB" value="default" ng-model="myColor">Default</label>
+            </div>
+        </div>
+    </form>
+
+    <div class="LHSlist">Hide my list
+        <input type="checkbox" name="listItems" ng-model="hideList">
+        <ul class="my-items" ng-hide="hideList">
+            <li ng-repeat="item in myItems">{{item.text}} <span style="color:red" ng-click="deleteItem($index)">x</span></li>
+        </ul>
+    </div>
+
+    <div class="RHSlist"><br>
+        <input type="text" ng-model="textInput">
+        <button type="submit" ng-click="addItem()">Add</button><br><br>
+
+        <input type="radio" name="whichList" ng-model="whichList" value="personal">Personal<br>
+        <input type="radio" name="whichList" ng-model="whichList" value="work">Work<br>
+        <input type="radio" name="whichList" ng-model="whichList" value="trip">Trip<br>
+    </div>
+
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
